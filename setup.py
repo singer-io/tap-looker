@@ -13,6 +13,11 @@ setup(name='tap-looker',
           'requests==2.22.0',
           'singer-python==5.8.1'
       ],
+      extras_require={
+          'dev': [
+              'pylint'
+          ]
+      },
       entry_points='''
           [console_scripts]
           tap-looker=tap_looker:main

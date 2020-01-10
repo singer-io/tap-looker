@@ -12,7 +12,7 @@ def write_schema(catalog, stream_name):
     try:
         singer.write_schema(stream_name, schema, stream.key_properties)
     except OSError as err:
-        LOGGER.info('OS Error writing schema for: {}'.format(stream_name))
+        LOGGER.info('OS Error writing schema for: %s', stream_name)
         raise err
 
 
@@ -22,10 +22,10 @@ def write_record(catalog, stream_name, url, record, time_extracted):
     except OSError as err:
         stream = catalog.get_stream(stream_name)
         schema = stream.schema.to_dict()
-        LOGGER.info('\n\n{} URL: {}\n\n'.format(stream_name, url))
-        LOGGER.info('{} schema:'.format(stream_name))
+        LOGGER.info('\n\n%s URL: %s\n\n', stream_name, url)
+        LOGGER.info('%s schema:', stream_name)
         LOGGER.info(json.dumps(schema, indent=2, sort_keys=True))
-        LOGGER.info('\n\nOS Error writing record for: {}, record:'.format(stream_name))
+        LOGGER.info('\n\nOS Error writing record for: %s, record:', stream_name)
         LOGGER.info(json.dumps(record, indent=2, sort_keys=True))
         raise err
 
@@ -33,17 +33,14 @@ def write_record(catalog, stream_name, url, record, time_extracted):
 def get_bookmark(state, stream, default):
     if (state is None) or ('bookmarks' not in state):
         return default
-    return (
-        state
-        .get('bookmarks', {})
-        .get(stream, default))
+    return (state .get('bookmarks', {}) .get(stream, default))
 
 
 def write_bookmark(state, stream, value):
     if 'bookmarks' not in state:
         state['bookmarks'] = {}
     state['bookmarks'][stream] = value
-    LOGGER.info('Write state for stream: {}, value: {}'.format(stream, value))
+    LOGGER.info('Write state for stream: %s, value: %s', stream, value)
     singer.write_state(state)
 
 
@@ -71,7 +68,7 @@ def process_records(catalog, #pylint: disable=too-many-branches
         for record in records:
             # If child object, add parent_id to record
             if parent_id and parent:
-                LOGGER.info('{}_id = {}'.format(parent, parent_id))
+                LOGGER.info('%s_id = %s', parent, parent_id)
                 record['{}_id'.format(parent)] = parent_id
 
             # Transform record for Singer.io
@@ -118,14 +115,14 @@ def sync_endpoint(client, #pylint: disable=too-many-branches
                   parent=None,
                   parent_id=None):
 
-    LOGGER.info('STARTING Stream: {}'.format(stream_name))
+    LOGGER.info('STARTING Stream: %s', stream_name)
     # Get the latest bookmark for the stream and set the last_datetime
     last_datetime = get_bookmark(state, stream_name, start_date)
     max_bookmark_value = last_datetime
 
     # pagination: there is no pagination for Looker API
     url = '{}/{}'.format(client.base_url, path)
-    LOGGER.info('URL for {}: {}'.format(stream_name, url))
+    LOGGER.info('URL for %s: %s', stream_name, url)
 
     # Get data, API request
     body = endpoint_config.get('body')
@@ -166,7 +163,7 @@ def sync_endpoint(client, #pylint: disable=too-many-branches
                     explore_name = explore.get('name')
                     if explore_name:
                         child_list.append(explore_name)
-        LOGGER.info('child_list: {}'.format(child_list))
+        LOGGER.info('child_list: %s', child_list)
     else:
         child_list = ['self']
 
@@ -226,19 +223,19 @@ def sync_endpoint(client, #pylint: disable=too-many-branches
                         do_pass = False
 
                     if not do_pass:
-                        LOGGER.info('{}, PATH does not pass: {}'.format(child_stream_name, \
-                            child_path))
+                        LOGGER.info('%s, PATH does not pass: %s', child_stream_name, \
+                            child_path)
                     else:
                         for child in child_list:
                             if child != 'self':
                                 child_path = child_path.replace('[child_id]', str(child))
-                            LOGGER.info('Syncing: {}, {}, parent_stream: {}, parent_id: {}'.format(
-                                child_stream_name,
-                                child,
-                                stream_name,
-                                parent_id))
+                            LOGGER.info('Syncing: %s, %s, parent_stream: %s, parent_id: %s',
+                                        child_stream_name,
+                                        child,
+                                        stream_name,
+                                        parent_id)
 
-                            LOGGER.info('{}, child_path: {}'.format(child_stream_name, child_path))
+                            LOGGER.info('%s, child_path: %s', child_stream_name, child_path)
                             child_total_records = sync_endpoint(
                                 client=client,
                                 catalog=catalog,
@@ -253,15 +250,15 @@ def sync_endpoint(client, #pylint: disable=too-many-branches
                                 selected_streams=selected_streams,
                                 parent=child_endpoint_config.get('parent'),
                                 parent_id=parent_id)
-                            LOGGER.info('Synced: {}, parent_id: {}, records_processed: {}'.format(
-                                child_stream_name,
-                                parent_id,
-                                child_total_records))
+                            LOGGER.info('Synced: %s, parent_id: %s, records_processed: %s',
+                                        child_stream_name,
+                                        parent_id,
+                                        child_total_records)
 
-    LOGGER.info('{}: records_queried = {}, records_processed = {}'.format(
-        stream_name, records_queried, records_processed))
+    LOGGER.info('%s: records_queried = %s, records_processed = %s',
+                stream_name, records_queried, records_processed)
     # Return the list of ids to the stream, in case this is a parent stream with children.
-    LOGGER.info('FINISHING Stream: {}'.format(stream_name))
+    LOGGER.info('FINISHING Stream: %s', stream_name)
     return records_processed
 
 
@@ -300,11 +297,11 @@ def sync(client, config, catalog, state):
     # Get selected_streams from catalog, based on state last_stream
     #   last_stream = Previous currently synced stream, if the load was interrupted
     last_stream = singer.get_currently_syncing(state)
-    LOGGER.info('last/currently syncing stream: {}'.format(last_stream))
+    LOGGER.info('last/currently syncing stream: %s', last_stream)
     selected_streams = []
     for stream in catalog.get_selected_streams(state):
         selected_streams.append(stream.stream)
-    LOGGER.info('selected_streams: {}'.format(selected_streams))
+    LOGGER.info('selected_streams: %s', selected_streams)
 
     if not selected_streams:
         return
@@ -312,9 +309,9 @@ def sync(client, config, catalog, state):
     # Loop through selected_streams
     for stream_name, endpoint_config in STREAMS.items():
         if stream_name in selected_streams:
-            LOGGER.info('START Syncing: {}'.format(stream_name))
+            LOGGER.info('START Syncing: %s', stream_name)
             selected_fields = get_selected_fields(catalog, stream_name)
-            LOGGER.info('Stream: {}, selected_fields: {}'.format(stream_name, selected_fields))
+            LOGGER.info('Stream: %s, selected_fields: %s', stream_name, selected_fields)
             update_currently_syncing(state, stream_name)
             path = endpoint_config.get('path', stream_name)
             bookmark_field = next(iter(endpoint_config.get('replication_keys', [])), None)
@@ -333,6 +330,6 @@ def sync(client, config, catalog, state):
                 selected_streams=selected_streams)
 
             update_currently_syncing(state, None)
-            LOGGER.info('FINISHED Syncing: {}, total_records: {}'.format(
-                stream_name,
-                total_records))
+            LOGGER.info('FINISHED Syncing: %s, total_records: %s',
+                        stream_name,
+                        total_records)

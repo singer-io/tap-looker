@@ -30,7 +30,7 @@ def generate_schemas(client):
             schema_path = get_abs_path('{}/tap_looker/schemas/{}.json'.format(cwd, stream_name))
             with open(schema_path, 'w', encoding='utf-8') as file:
                 json.dump(schema, file, ensure_ascii=False, indent=2, sort_keys=True)
-    LOGGER.info('Generated schemas for: {}'.format(sorted(flat_streams_list)))
+    LOGGER.info('Generated schemas for: %s', sorted(flat_streams_list))
 
 
 def get_schemas():

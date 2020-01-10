@@ -139,7 +139,7 @@ class LookerClient:
             timer.tags[metrics.Tag.http_status_code] = response.status_code
 
         status_code = response.status_code
-        LOGGER.info('status_code = {}'.format(status_code))
+        LOGGER.info('status_code = %s', status_code)
 
         if status_code >= 500:
             raise Server5xxError()
@@ -151,7 +151,7 @@ class LookerClient:
 
         elif status_code == 404:
             if endpoint in ('explores', 'models', 'merge_queries', 'queries'):
-                LOGGER.error('HTTP 404 Error, URL Not Found: {}'.format(url))
+                LOGGER.error('HTTP 404 Error, URL Not Found: %s', url)
                 return None
             else:
                 response.raise_for_status()
