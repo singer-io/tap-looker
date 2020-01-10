@@ -97,5 +97,9 @@
         "boolean"
       ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }

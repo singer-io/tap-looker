@@ -28,7 +28,11 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "looker_release_version": {
       "type": [
@@ -64,12 +68,20 @@
               "string"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
         "array"
       ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }

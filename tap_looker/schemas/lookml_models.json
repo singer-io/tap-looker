@@ -47,7 +47,11 @@
               "string"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
@@ -84,5 +88,9 @@
         "boolean"
       ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }

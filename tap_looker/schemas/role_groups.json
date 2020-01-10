@@ -55,5 +55,9 @@
         "integer"
       ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }

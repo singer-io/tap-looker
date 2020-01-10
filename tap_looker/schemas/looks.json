@@ -150,7 +150,11 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "folder_id": {
       "type": [
@@ -217,7 +221,11 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "public": {
       "type": [
@@ -336,7 +344,11 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "space_id": {
       "type": [
@@ -366,7 +378,11 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "user_id": {
       "type": [
@@ -380,5 +396,9 @@
         "integer"
       ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }

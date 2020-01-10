@@ -115,7 +115,11 @@
                 "string"
               ]
             }
-          }
+          },
+          "type": [
+            "null",
+            "object"
+          ]
         },
         "hidden": {
           "type": [
@@ -144,7 +148,11 @@
                 "string"
               ]
             }
-          }
+          },
+          "type": [
+            "null",
+            "object"
+          ]
         },
         "query_timezone": {
           "type": [
@@ -257,7 +265,11 @@
                 "string"
               ]
             }
-          }
+          },
+          "type": [
+            "null",
+            "object"
+          ]
         },
         "title": {
           "type": [
@@ -271,7 +283,11 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "dashboard_id": {
       "type": [
@@ -306,7 +322,11 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "look_id": {
       "type": [
@@ -320,5 +340,9 @@
         "string"
       ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }

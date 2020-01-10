@@ -230,7 +230,11 @@
                     "integer"
                   ]
                 }
-              }
+              },
+              "type": [
+                "null",
+                "object"
+              ]
             },
             "type": [
               "null",
@@ -274,7 +278,11 @@
               "string"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
@@ -324,5 +332,9 @@
         "string"
       ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }

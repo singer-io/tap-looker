@@ -99,5 +99,9 @@
         "object"
       ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }

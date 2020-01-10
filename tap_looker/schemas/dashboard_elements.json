@@ -189,7 +189,11 @@
                 "string"
               ]
             }
-          }
+          },
+          "type": [
+            "null",
+            "object"
+          ]
         },
         "folder_id": {
           "type": [
@@ -256,7 +260,11 @@
                 "string"
               ]
             }
-          }
+          },
+          "type": [
+            "null",
+            "object"
+          ]
         },
         "public": {
           "type": [
@@ -463,7 +471,11 @@
                 "string"
               ]
             }
-          }
+          },
+          "type": [
+            "null",
+            "object"
+          ]
         },
         "query_id": {
           "type": [
@@ -564,7 +576,11 @@
                 "string"
               ]
             }
-          }
+          },
+          "type": [
+            "null",
+            "object"
+          ]
         },
         "space_id": {
           "type": [
@@ -600,7 +616,11 @@
                 "string"
               ]
             }
-          }
+          },
+          "type": [
+            "null",
+            "object"
+          ]
         },
         "user_id": {
           "type": [
@@ -614,7 +634,11 @@
             "integer"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "look_id": {
       "type": [
@@ -845,7 +869,11 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "query_id": {
       "type": [
@@ -894,7 +922,11 @@
                         "string"
                       ]
                     }
-                  }
+                  },
+                  "type": [
+                    "null",
+                    "object"
+                  ]
                 },
                 "type": [
                   "null",
@@ -919,7 +951,11 @@
                   "string"
                 ]
               }
-            }
+            },
+            "type": [
+              "null",
+              "object"
+            ]
           },
           "type": [
             "null",
@@ -1125,7 +1161,11 @@
                 "string"
               ]
             }
-          }
+          },
+          "type": [
+            "null",
+            "object"
+          ]
         },
         "query_id": {
           "type": [
@@ -1153,7 +1193,11 @@
             "object"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "result_maker_id": {
       "type": [
@@ -1191,5 +1235,9 @@
         "string"
       ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }
