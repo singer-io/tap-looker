@@ -85,7 +85,7 @@ def tranform_looker_schemas(this_dict):
 
 # Create a Singer JSON Schema from Looker Swagger endpoint
 def get_transform_schema(client, stream_swagger_object, stream_name):
-    LOGGER.info('Starting transform: {}'.format(stream_name))
+    LOGGER.info('Starting transform: %s', stream_name)
     endpoint = 'swagger.json'
     swagger = client.request(method='GET', path=endpoint, endpoint=endpoint)
     schema = swagger.get('definitions', {}).get(stream_swagger_object, {})
