@@ -40,7 +40,11 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "id": {
       "type": [
@@ -78,5 +82,9 @@
         "string"
       ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }

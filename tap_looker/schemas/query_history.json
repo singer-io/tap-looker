@@ -1,5 +1,6 @@
 {
   "additionalProperties": false,
+  "type": ["null","object"],
   "properties": {
     "query_id": {
       "type": [

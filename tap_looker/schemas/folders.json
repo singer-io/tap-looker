@@ -128,7 +128,11 @@
                   "string"
                 ]
               }
-            }
+            },
+            "type": [
+              "null",
+              "object"
+            ]
           },
           "hidden": {
             "type": [
@@ -157,7 +161,11 @@
                   "string"
                 ]
               }
-            }
+            },
+            "type": [
+              "null",
+              "object"
+            ]
           },
           "query_timezone": {
             "type": [
@@ -270,7 +278,11 @@
                   "string"
                 ]
               }
-            }
+            },
+            "type": [
+              "null",
+              "object"
+            ]
           },
           "title": {
             "type": [
@@ -284,7 +296,11 @@
               "string"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
@@ -477,7 +493,11 @@
                         "string"
                       ]
                     }
-                  }
+                  },
+                  "type": [
+                    "null",
+                    "object"
+                  ]
                 },
                 "hidden": {
                   "type": [
@@ -506,7 +526,11 @@
                         "string"
                       ]
                     }
-                  }
+                  },
+                  "type": [
+                    "null",
+                    "object"
+                  ]
                 },
                 "query_timezone": {
                   "type": [
@@ -619,7 +643,11 @@
                         "string"
                       ]
                     }
-                  }
+                  },
+                  "type": [
+                    "null",
+                    "object"
+                  ]
                 },
                 "title": {
                   "type": [
@@ -633,7 +661,11 @@
                     "string"
                   ]
                 }
-              }
+              },
+              "type": [
+                "null",
+                "object"
+              ]
             },
             "type": [
               "null",
@@ -770,7 +802,11 @@
                   "string"
                 ]
               }
-            }
+            },
+            "type": [
+              "null",
+              "object"
+            ]
           },
           "folder_id": {
             "type": [
@@ -837,7 +873,11 @@
                   "string"
                 ]
               }
-            }
+            },
+            "type": [
+              "null",
+              "object"
+            ]
           },
           "public": {
             "type": [
@@ -956,7 +996,11 @@
                   "string"
                 ]
               }
-            }
+            },
+            "type": [
+              "null",
+              "object"
+            ]
           },
           "space_id": {
             "type": [
@@ -986,7 +1030,11 @@
                   "string"
                 ]
               }
-            }
+            },
+            "type": [
+              "null",
+              "object"
+            ]
           },
           "user_id": {
             "type": [
@@ -1000,7 +1048,11 @@
               "integer"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
@@ -1019,5 +1071,9 @@
         "string"
       ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }

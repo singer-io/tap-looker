@@ -53,7 +53,11 @@
               "string"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
@@ -117,7 +121,11 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "credentials_embed": {
       "items": {
@@ -171,7 +179,11 @@
               "string"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
@@ -229,7 +241,11 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "credentials_ldap": {
       "additionalProperties": false,
@@ -282,7 +298,11 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "credentials_looker_openid": {
       "additionalProperties": false,
@@ -335,7 +355,11 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "credentials_oidc": {
       "additionalProperties": false,
@@ -382,7 +406,11 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "credentials_saml": {
       "additionalProperties": false,
@@ -429,7 +457,11 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "credentials_totp": {
       "additionalProperties": false,
@@ -464,7 +496,11 @@
             "boolean"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "display_name": {
       "type": [
@@ -682,7 +718,11 @@
               "string"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
@@ -708,5 +748,9 @@
         "boolean"
       ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }

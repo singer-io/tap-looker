@@ -49,5 +49,9 @@
         "integer"
       ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }

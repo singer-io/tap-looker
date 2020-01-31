@@ -106,7 +106,11 @@
             "boolean"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "dialect_name": {
       "type": [
@@ -256,7 +260,11 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "pool_timeout": {
       "type": [
@@ -304,7 +312,11 @@
               "string"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
@@ -371,5 +383,9 @@
         "boolean"
       ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }

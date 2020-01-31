@@ -8,6 +8,9 @@ LOGGER = singer.get_logger()
 # Loop through and replace $ref references in nested dict and lists
 def replace_refs(this_dict, swagger):
     for k, v in list(this_dict.items()):
+        if k == 'properties' and isinstance(this_dict, dict):
+            this_dict['additionalProperties'] = False
+            this_dict['type'] = ['null', 'object']
         if isinstance(v, dict):
             is_nested_ref = False
             for key, val in list(v.items()):
@@ -44,6 +47,7 @@ def tranform_looker_schemas(this_dict):
             this_dict.pop('description', None)
             if v == 'object':
                 this_dict['additionalProperties'] = False
+                this_dict['type'] = ['null', 'object']
             arr = ['null']
             arr.append(v)
             this_dict[k] = arr
@@ -53,7 +57,7 @@ def tranform_looker_schemas(this_dict):
         # Add additionalProperties = False to object nodes and remove Looker-specific nodes
         if k == 'properties':
             this_dict['additionalProperties'] = False
-            if this_dict.get('type') == 'object':
+            if this_dict.get('type') == 'object' or this_dict.get('type') == ['null', 'object']:
                 this_dict['type'] = ['null', 'object']
             this_dict.pop('x-looker-status', None)
             this_dict.pop('required', None)
@@ -89,7 +93,7 @@ def get_transform_schema(client, stream_swagger_object, stream_name):
 
     # Fix issue with ui_cofig and field for DashboardFilter
     if stream_name == 'dashboard_filters':
-        LOGGER.info('Transforming JSON schema: %s', stream_name)
+        LOGGER.info('Transforming JSON schema: {}'.format(stream_name))
         new_schema['properties']['field'] = {"type": ["null", "object"], \
             'additionalProperties': True}
         new_schema['properties']['ui_config'] = {"type": ["null", "object"], \
@@ -99,7 +103,7 @@ def get_transform_schema(client, stream_swagger_object, stream_name):
 
     # Fix issue with ui_cofig and field for DashboardFilter
     elif stream_name == 'dashboard_elements':
-        LOGGER.info('Transforming JSON schema: %s', stream_name)
+        LOGGER.info('Transforming JSON schema: {}'.format(stream_name))
         new_schema['properties']['look']['properties']['query']['properties']['filter_config'] = \
             {"type": ["null", "object"], 'additionalProperties': True}
         new_schema['properties']['look']['properties']['query']['properties']['filters'] = \
@@ -131,7 +135,7 @@ def get_transform_schema(client, stream_swagger_object, stream_name):
 
     # Fix issues with datatypes in DBConnection schema
     elif stream_name == 'connections':
-        LOGGER.info('Transforming JSON schema: %s', stream_name)
+        LOGGER.info('Transforming JSON schema: {}'.format(stream_name))
         new_schema['properties']['last_regen_at'] = {"type": ["null", "integer"]}
         new_schema['properties']['last_reap_at'] = {"type": ["null", "integer"]}
         new_schema['properties']['max_billing_gigabytes'] = \
@@ -139,12 +143,12 @@ def get_transform_schema(client, stream_swagger_object, stream_name):
 
     # Add parent_id node to Group
     elif stream_name == 'groups_in_group':
-        LOGGER.info('Transforming JSON schema: %s', stream_name)
+        LOGGER.info('Transforming JSON schema: {}'.format(stream_name))
         new_schema['properties']['parent_group_id'] = {"type": ["null", "string"]}
 
     # Fix issue for Explore field enumerations value (string OR number)
     elif stream_name == 'explores':
-        LOGGER.info('Transforming JSON schema: %s', stream_name)
+        LOGGER.info('Transforming JSON schema: {}'.format(stream_name))
         new_schema['properties']['fields']['properties']['dimensions']['items']['properties']['enumerations']['items']['properties']['value'] = \
             {"type": ["null", "string"]}
         new_schema['properties']['fields']['properties']['dimensions']['items']['properties']['time_interval']['properties']['count'] = \
@@ -152,12 +156,12 @@ def get_transform_schema(client, stream_swagger_object, stream_name):
 
     # Add role_id node to Role Groups
     elif stream_name == 'role_groups':
-        LOGGER.info('Transforming JSON schema: %s', stream_name)
+        LOGGER.info('Transforming JSON schema: {}'.format(stream_name))
         new_schema['properties']['role_id'] = {"type": ["null", "string"]}
 
     # Fix issue with ui_state for User
     elif stream_name == 'users':
-        LOGGER.info('Transforming JSON schema: %s', stream_name)
+        LOGGER.info('Transforming JSON schema: {}'.format(stream_name))
         new_schema['properties']['ui_state'] = {"type": ["null", "object"], \
             'additionalProperties': True}
         new_schema['properties']['home_folder_id'] = {"type": ["null", "string"], \
@@ -167,17 +171,17 @@ def get_transform_schema(client, stream_swagger_object, stream_name):
 
     # Fix issue for UserAttribute value (string OR number)
     elif stream_name in ('user_attribute_group_values', 'user_attribute_values'):
-        LOGGER.info('Transforming JSON schema: %s', stream_name)
+        LOGGER.info('Transforming JSON schema: {}'.format(stream_name))
         new_schema['properties']['value'] = {"type": ["null", "string"]}
 
     # Add parent_id nodes to GitBranch and ProjectFile
     elif stream_name in ('project_files', 'git_branches'):
-        LOGGER.info('Transforming JSON schema: %s', stream_name)
+        LOGGER.info('Transforming JSON schema: {}'.format(stream_name))
         new_schema['properties']['project_id'] = {"type": ["null", "string"]}
 
     # Fix issues with Query filters, sorts, and cofigs
     elif stream_name == 'queries':
-        LOGGER.info('Transforming JSON schema: %s', stream_name)
+        LOGGER.info('Transforming JSON schema: {}'.format(stream_name))
         new_schema['properties']['filter_config'] = {"type": ["null", "object"], \
             'additionalProperties': True}
         new_schema['properties']['filters'] = {"type": ["null", "object"], \
@@ -188,7 +192,7 @@ def get_transform_schema(client, stream_swagger_object, stream_name):
  
     # Fix issues with MergeQuery sorts and config
     elif stream_name == 'merge_queries':
-        LOGGER.info('Transforming JSON schema: %s', stream_name)
+        LOGGER.info('Transforming JSON schema: {}'.format(stream_name))
         new_schema['properties']['vis_config'] = {"type": ["null", "object"], \
             'additionalProperties': True}
         new_schema['properties']['sorts'] = {"type": ["null", "array"], "items": {}}

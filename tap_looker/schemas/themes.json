@@ -120,7 +120,15 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }

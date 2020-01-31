@@ -185,5 +185,9 @@
         "string"
       ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }

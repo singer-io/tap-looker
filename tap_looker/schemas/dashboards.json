@@ -106,7 +106,11 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "hidden": {
       "type": [
@@ -135,7 +139,11 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "query_timezone": {
       "type": [
@@ -248,7 +256,11 @@
             "string"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "title": {
       "type": [
@@ -262,5 +274,9 @@
         "string"
       ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }

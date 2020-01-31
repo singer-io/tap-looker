@@ -89,7 +89,11 @@
               "integer"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
@@ -126,5 +130,9 @@
         "integer"
       ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }

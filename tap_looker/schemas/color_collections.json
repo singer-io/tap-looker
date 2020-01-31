@@ -35,7 +35,11 @@
               "string"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
@@ -75,7 +79,11 @@
                     "number"
                   ]
                 }
-              }
+              },
+              "type": [
+                "null",
+                "object"
+              ]
             },
             "type": [
               "null",
@@ -88,7 +96,11 @@
               "string"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
@@ -140,7 +152,11 @@
                     "number"
                   ]
                 }
-              }
+              },
+              "type": [
+                "null",
+                "object"
+              ]
             },
             "type": [
               "null",
@@ -153,12 +169,20 @@
               "string"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
         "array"
       ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }

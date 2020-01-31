@@ -30,7 +30,11 @@
               "string"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
@@ -53,7 +57,11 @@
               "string"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
@@ -76,7 +84,11 @@
               "string"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
@@ -129,7 +141,11 @@
               "string"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
@@ -177,7 +193,11 @@
               "string"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
@@ -249,7 +269,11 @@
                         "string"
                       ]
                     }
-                  }
+                  },
+                  "type": [
+                    "null",
+                    "object"
+                  ]
                 },
                 "type": [
                   "null",
@@ -409,7 +433,11 @@
                       "string"
                     ]
                   }
-                }
+                },
+                "type": [
+                  "null",
+                  "object"
+                ]
               },
               "measure": {
                 "type": [
@@ -499,7 +527,11 @@
                         "string"
                       ]
                     }
-                  }
+                  },
+                  "type": [
+                    "null",
+                    "object"
+                  ]
                 },
                 "type": [
                   "null",
@@ -569,7 +601,11 @@
                       "string"
                     ]
                   }
-                }
+                },
+                "type": [
+                  "null",
+                  "object"
+                ]
               },
               "type": {
                 "type": [
@@ -613,7 +649,11 @@
                   "string"
                 ]
               }
-            }
+            },
+            "type": [
+              "null",
+              "object"
+            ]
           },
           "type": [
             "null",
@@ -682,7 +722,11 @@
                         "string"
                       ]
                     }
-                  }
+                  },
+                  "type": [
+                    "null",
+                    "object"
+                  ]
                 },
                 "type": [
                   "null",
@@ -842,7 +886,11 @@
                       "string"
                     ]
                   }
-                }
+                },
+                "type": [
+                  "null",
+                  "object"
+                ]
               },
               "measure": {
                 "type": [
@@ -932,7 +980,11 @@
                         "string"
                       ]
                     }
-                  }
+                  },
+                  "type": [
+                    "null",
+                    "object"
+                  ]
                 },
                 "type": [
                   "null",
@@ -1002,7 +1054,11 @@
                       "string"
                     ]
                   }
-                }
+                },
+                "type": [
+                  "null",
+                  "object"
+                ]
               },
               "type": {
                 "type": [
@@ -1046,7 +1102,11 @@
                   "string"
                 ]
               }
-            }
+            },
+            "type": [
+              "null",
+              "object"
+            ]
           },
           "type": [
             "null",
@@ -1115,7 +1175,11 @@
                         "string"
                       ]
                     }
-                  }
+                  },
+                  "type": [
+                    "null",
+                    "object"
+                  ]
                 },
                 "type": [
                   "null",
@@ -1275,7 +1339,11 @@
                       "string"
                     ]
                   }
-                }
+                },
+                "type": [
+                  "null",
+                  "object"
+                ]
               },
               "measure": {
                 "type": [
@@ -1365,7 +1433,11 @@
                         "string"
                       ]
                     }
-                  }
+                  },
+                  "type": [
+                    "null",
+                    "object"
+                  ]
                 },
                 "type": [
                   "null",
@@ -1435,7 +1507,11 @@
                       "string"
                     ]
                   }
-                }
+                },
+                "type": [
+                  "null",
+                  "object"
+                ]
               },
               "type": {
                 "type": [
@@ -1479,7 +1555,11 @@
                   "string"
                 ]
               }
-            }
+            },
+            "type": [
+              "null",
+              "object"
+            ]
           },
           "type": [
             "null",
@@ -1548,7 +1628,11 @@
                         "string"
                       ]
                     }
-                  }
+                  },
+                  "type": [
+                    "null",
+                    "object"
+                  ]
                 },
                 "type": [
                   "null",
@@ -1708,7 +1792,11 @@
                       "string"
                     ]
                   }
-                }
+                },
+                "type": [
+                  "null",
+                  "object"
+                ]
               },
               "measure": {
                 "type": [
@@ -1798,7 +1886,11 @@
                         "string"
                       ]
                     }
-                  }
+                  },
+                  "type": [
+                    "null",
+                    "object"
+                  ]
                 },
                 "type": [
                   "null",
@@ -1868,7 +1960,11 @@
                       "string"
                     ]
                   }
-                }
+                },
+                "type": [
+                  "null",
+                  "object"
+                ]
               },
               "type": {
                 "type": [
@@ -1912,14 +2008,22 @@
                   "string"
                 ]
               }
-            }
+            },
+            "type": [
+              "null",
+              "object"
+            ]
           },
           "type": [
             "null",
             "array"
           ]
         }
-      }
+      },
+      "type": [
+        "null",
+        "object"
+      ]
     },
     "files": {
       "items": {
@@ -2069,7 +2173,11 @@
               "string"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
@@ -2140,7 +2248,11 @@
               "array"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
@@ -2181,7 +2293,11 @@
               "array"
             ]
           }
-        }
+        },
+        "type": [
+          "null",
+          "object"
+        ]
       },
       "type": [
         "null",
@@ -2212,5 +2328,9 @@
         "string"
       ]
     }
-  }
+  },
+  "type": [
+    "null",
+    "object"
+  ]
 }
