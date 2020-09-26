@@ -1,4 +1,5 @@
 import json
+from tap_looker.client import Server5xxError
 import singer
 from singer import metrics, metadata, utils, Transformer
 from tap_looker.transform import transform_json
@@ -126,11 +127,17 @@ def sync_endpoint(client, #pylint: disable=too-many-branches
 
     # Get data, API request
     body = endpoint_config.get('body')
-    data = client.request(
-        method=method,
-        path=path,
-        endpoint=stream_name,
-        json=body)
+    data = []
+    try:
+        data = client.request(
+            method=method,
+            path=path,
+            endpoint=stream_name,
+            json=body)
+    except Server5xxError as err:
+        LOGGER.warning('Server 5xx Error: {}'.format(err))
+        LOGGER.warning('Error URL: {}'.format(url))
+        return 0
 
     # time_extracted: datetime when the data was extracted from the API
     time_extracted = utils.now()
@@ -189,7 +196,14 @@ def sync_endpoint(client, #pylint: disable=too-many-branches
                 # For each parent record
                 for record in transformed_data:
                     i = 0
+                    if stream_name == 'users' and child_stream_name in (
+                        'user_sessions', 'content_favorites', 'content_views'):
+                        # Skip disabled users which result in 500 errors
+                        is_disabled = record.get('is_disabled', False)
+                        if is_disabled:
+                            continue
                     # Set parent_id
+                    parent_id_field = None
                     for id_field in id_fields:
                         if i == 0:
                             parent_id_field = id_field
@@ -197,7 +211,9 @@ def sync_endpoint(client, #pylint: disable=too-many-branches
                             parent_id_field = id_field
                         i = i + 1
                     do_pass = True
-                    parent_id = record.get(parent_id_field)
+                    if parent_id_field:
+                        parent_id = record.get(parent_id_field)
+                    child_path = None
                     if parent_id:
                         child_path = child_endpoint_config.get('path').format(str(parent_id))
                     else:
@@ -291,8 +307,7 @@ def get_selected_fields(catalog, stream_name):
     return selected_fields
 
 def sync(client, config, catalog, state):
-    if 'start_date' in config:
-        start_date = config['start_date']
+    start_date = config.get('start_date')
 
     # Get selected_streams from catalog, based on state last_stream
     #   last_stream = Previous currently synced stream, if the load was interrupted
