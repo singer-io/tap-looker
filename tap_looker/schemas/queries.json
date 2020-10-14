@@ -54,7 +54,8 @@
       "type": [
         "null",
         "object"
-      ]
+      ],
+      "properties": {}
     },
     "filter_expression": {
       "type": [
@@ -67,7 +68,8 @@
       "type": [
         "null",
         "object"
-      ]
+      ],
+      "properties": {}
     },
     "has_table_calculations": {
       "type": [
@@ -177,7 +179,8 @@
       "type": [
         "null",
         "object"
-      ]
+      ],
+      "properties": {}
     },
     "visible_ui_sections": {
       "type": [

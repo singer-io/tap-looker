@@ -36,7 +36,8 @@
       "type": [
         "null",
         "object"
-      ]
+      ],
+      "properties": {}
     },
     "id": {
       "type": [
@@ -97,7 +98,8 @@
       "type": [
         "null",
         "object"
-      ]
+      ],
+      "properties": {}
     }
   },
   "type": [
