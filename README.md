@@ -53,7 +53,7 @@ This tap:
   - [versions](https://docs.looker.com/reference/api-and-integration/api-reference/v3.1/config#get_apiversion)
   - [workspaces](https://docs.looker.com/reference/api-and-integration/api-reference/v3.1/workspace)
 
-- All endpoints replicate FULL_TABLE (ALL records, every time). Currently, the Looker API does not support paginating, sorting, filtering, or providing audit fields (like created/modified datetimes). 
+- All endpoints replicate FULL_TABLE (ALL records, every time). Currently, the Looker API does not support paginating, sorting, filtering, or providing audit fields (like created/modified datetimes).
 - Primary Key field(s): Almost all endpoint have an `id` primary key
   - lookml_models, models, git_branches use a combination key of `name` and `project_name`
   - git_branches use a combination key of `name` and `project_id`
@@ -86,7 +86,7 @@ This tap:
     > pip install singer-tools
     > pip install target-stitch
     > pip install target-json
-    
+
     ```
     - [singer-tools](https://github.com/singer-io/singer-tools)
     - [target-stitch](https://github.com/singer-io/target-stitch)
@@ -96,7 +96,6 @@ This tap:
     - `client_id` and `client_secret` are your [API3 Keys](https://docs.looker.com/admin-options/settings/users#api3_keys), which may be generated and provided by a Looker Admin.
     - `domain` is usually `looker.com`, unless you have your own white-labeled URL.
     - `api_port` is usually `19999`, unless you are hosting Looker internally and are using a different port for the API.
-    - `api_version` is currently tested ONLY with 3.1. It may work with other versions.
     - `start_data` is not currently used. The Looker API does not provide audit dates or allow query filtering, sorting, and paging.
     - `user_agent` is used to identify yourself in the API logs.
 
@@ -107,7 +106,6 @@ This tap:
         "client_secret": "YOUR_LOOKER_CLIENT_SECRET",
         "domain": "looker.com",
         "api_port": "19999",
-        "api_version": "3.1",
         "start_date": "2019-01-01T00:00:00Z",
         "user_agent": "tap-looker <api_user_email@your_company.com>"
     }
@@ -140,7 +138,7 @@ This tap:
     ```
 
 6. Test the Tap
-    
+
     While developing the looker tap, the following utilities were run in accordance with Singer.io best practices:
     Pylint to improve [code quality](https://github.com/singer-io/getting-started/blob/master/docs/BEST_PRACTICES.md#code-quality):
     ```bash
