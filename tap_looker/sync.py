@@ -1,7 +1,8 @@
 import json
-from tap_looker.client import Server5xxError
 import singer
 from singer import metrics, metadata, utils, Transformer
+
+from tap_looker.client import Server5xxError
 from tap_looker.transform import transform_json
 from tap_looker.streams import STREAMS
 
@@ -135,8 +136,8 @@ def sync_endpoint(client, #pylint: disable=too-many-branches
             endpoint=stream_name,
             json=body)
     except Server5xxError as err:
-        LOGGER.warning('Server 5xx Error: {}'.format(err))
-        LOGGER.warning('Error URL: {}'.format(url))
+        LOGGER.warning('Server 5xx Error: %s', err)
+        LOGGER.warning('Error URL: %s', url)
         return 0
 
     # time_extracted: datetime when the data was extracted from the API
