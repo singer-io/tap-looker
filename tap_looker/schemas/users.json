@@ -734,7 +734,8 @@
       "type": [
         "null",
         "object"
-      ]
+      ],
+      "properties": {}
     },
     "url": {
       "type": [
