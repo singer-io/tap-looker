@@ -151,7 +151,7 @@ class LookerClient:
 
         elif status_code == 404:
             if endpoint in ('explores', 'models', 'merge_queries', 'queries'):
-                LOGGER.error('HTTP 404 Error, URL Not Found: %s', url)
+                LOGGER.warning('HTTP 404 Error, URL Not Found: %s', url)
                 return None
             else:
                 response.raise_for_status()
