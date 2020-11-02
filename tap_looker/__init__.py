@@ -5,7 +5,7 @@ import json
 import argparse
 import singer
 from singer import metadata, utils
-from tap_looker.client import LookerClient
+from tap_looker.client import LookerClient, API_VERSION_DEFAULT
 from tap_looker.discover import discover
 from tap_looker.sync import sync
 
@@ -37,7 +37,7 @@ def main():
                       client_secret=parsed_args.config['client_secret'],
                       domain=parsed_args.config['domain'],
                       api_port=parsed_args.config['api_port'],
-                      api_version=parsed_args.config['api_version'],
+                      api_version=API_VERSION_DEFAULT,
                       user_agent=parsed_args.config['user_agent']) as client:
 
         state = {}

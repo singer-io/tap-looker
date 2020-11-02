@@ -4,7 +4,6 @@
     "client_secret": "YOUR_LOOKER_CLIENT_SECRET",
     "domain": "looker.com",
     "api_port": "19999",
-    "api_version": "3.1",
     "start_date": "2019-01-01T00:00:00Z",
     "user_agent": "tap-looker <api_user_email@your_company.com>"
 }
