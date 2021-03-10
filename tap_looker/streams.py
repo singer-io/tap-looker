@@ -377,6 +377,13 @@ STREAMS = {
                 'look.id',
                 'dashboard.id',
                 'user.id',
+                'history.message',
+                'history.status',
+                'history.rebuild_pdts',
+                'history.most_recent_run_at_date',
+                'history.result_source',
+                'history.server_table_calcs',
+                'history.source',
                 'history.query_run_count',
                 'history.total_runtime'
             ],
