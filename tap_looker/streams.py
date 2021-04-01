@@ -378,6 +378,7 @@ STREAMS = {
                 'dashboard.id',
                 'user.id',
                 'history.message',
+                'history.dashboard_id',
                 'history.status',
                 'history.rebuild_pdts',
                 'history.most_recent_run_at_date',
