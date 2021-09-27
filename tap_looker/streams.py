@@ -361,7 +361,7 @@ STREAMS = {
         'swagger_object': 'Workspace'
     },
     'query_history': {
-        'path': 'queries/run/json?limit=10000&apply_formatting=false&apply_vis=false&cache=false&force_production=true&server_table_calcs=false',
+        'path': 'queries/run/json?limit=60000&apply_formatting=false&apply_vis=false&cache=false&force_production=true&server_table_calcs=false',
         'key_properties': ['query_id', 'history_created_date', 'dims_hash_key'],
         'replication_method': 'FULL_TABLE',
         'method': 'POST',
@@ -370,7 +370,7 @@ STREAMS = {
             'view': 'history',
             'fields': [
                 'query.id',
-                'history.created_date',
+                'history.created_at',
                 'query.model',
                 'query.view',
                 'space.id',
@@ -380,10 +380,8 @@ STREAMS = {
                 'history.message',
                 'history.dashboard_id',
                 'history.status',
-                'history.rebuild_pdts',
                 'history.most_recent_run_at_date',
                 'history.result_source',
-                'history.server_table_calcs',
                 'history.source',
                 'history.query_run_count',
                 'history.total_runtime'
