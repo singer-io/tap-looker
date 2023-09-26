@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.0
+  * API version upgrade and related changes
+  * Upgrade singer-python version to 5.13.0
+
 ## 0.0.4
   * Error handling for `sync.py` child endpoint missing or not-accessible errors (404 and 5xx Errors).
 

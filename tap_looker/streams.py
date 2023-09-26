@@ -126,25 +126,6 @@ STREAMS = {
             }
         }
     },
-    'homepages': {
-        'key_properties': ['id'],
-        'replication_method': 'FULL_TABLE',
-        'swagger_object': 'Homepage',
-        'children': {
-            'content_metadata': {
-                'path': 'content_metadata/[content_metadata_id]',
-                'key_properties': ['id'],
-                'replication_method': 'FULL_TABLE',
-                'swagger_object': 'ContentMeta'
-            },
-            'content_metadata_access': {
-                'path': 'content_metadata_access?content_metadata_id=[content_metadata_id]',
-                'key_properties': ['id'],
-                'replication_method': 'FULL_TABLE',
-                'swagger_object': 'ContentMetaGroupUser'
-            }
-        }
-    },
     'integration_hubs': {
         'key_properties': ['id'],
         'replication_method': 'FULL_TABLE',
@@ -270,31 +251,6 @@ STREAMS = {
         'key_properties': ['id'],
         'replication_method': 'FULL_TABLE',
         'swagger_object': 'ScheduledPlan'
-    },
-    'spaces': {
-        'key_properties': ['id'],
-        'replication_method': 'FULL_TABLE',
-        'swagger_object': 'Space',
-        'children': {
-            'content_metadata': {
-                'path': 'content_metadata?parent_id=[content_metadata_id]',
-                'key_properties': ['id'],
-                'replication_method': 'FULL_TABLE',
-                'swagger_object': 'ContentMeta'
-            },
-            'content_metadata': {
-                'path': 'content_metadata/[content_metadata_id]',
-                'key_properties': ['id'],
-                'replication_method': 'FULL_TABLE',
-                'swagger_object': 'ContentMeta'
-            },
-            'content_metadata_access': {
-                'path': 'content_metadata_access?content_metadata_id=[content_metadata_id]',
-                'key_properties': ['id'],
-                'replication_method': 'FULL_TABLE',
-                'swagger_object': 'ContentMetaGroupUser'
-            }
-        }
     },
     'themes': {
         'key_properties': ['id'],
