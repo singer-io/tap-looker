@@ -16,7 +16,7 @@ jobs:
           name: 'pylint'
           command: |
             source /usr/local/share/virtualenvs/tap-looker/bin/activate
-            pylint tap_surveymonkey -d C,R,W
+            pylint tap_looker -d C,R,W
 workflows:
   version: 2
   commit:
