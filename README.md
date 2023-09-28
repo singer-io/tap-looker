@@ -19,7 +19,6 @@ This tap:
   - [datagroups](https://docs.looker.com/reference/api-and-integration/api-reference/v3.1/datagroup#get_all_datagroups)
   - [folders](https://docs.looker.com/reference/api-and-integration/api-reference/v3.1/folder#get_all_folders)
   - [groups](https://docs.looker.com/reference/api-and-integration/api-reference/v3.1/group#get_all_groups)
-  - [homepages](https://docs.looker.com/reference/api-and-integration/api-reference/v3.1/homepage#get_all_homepages)
   - [integration_hubs](https://docs.looker.com/reference/api-and-integration/api-reference/v3.1/integration#get_all_integration_hubs)
   - [integrations](https://docs.looker.com/reference/api-and-integration/api-reference/v3.1/integration#get_all_integrations)
   - [lookml_dashboards](https://docs.looker.com/reference/api-and-integration/api-reference/v3.1/dashboard#get_all_dashboards)
@@ -42,7 +41,6 @@ This tap:
     - [for dashboards](https://docs.looker.com/reference/api-and-integration/api-reference/v3.1/scheduled-plan#scheduled_plans_for_dashboard)
     - [for lookml_dashboards](https://docs.looker.com/reference/api-and-integration/api-reference/v3.1/scheduled-plan#scheduled_plans_for_lookml_dashboard)
     - [for looks](https://docs.looker.com/reference/api-and-integration/api-reference/v3.1/scheduled-plan#scheduled_plans_for_look)
-  - [spaces](https://docs.looker.com/reference/api-and-integration/api-reference/v3.1/space#get_all_spaces)
   - [themes](https://docs.looker.com/reference/api-and-integration/api-reference/v3.1/theme#get_all_themes)
   - [user_attributes](https://docs.looker.com/reference/api-and-integration/api-reference/v3.1/user-attribute#get_all_user_attributes)
     - [user_attribute_group_value](https://docs.looker.com/reference/api-and-integration/api-reference/v3.1/user-attribute#get_user_attribute_group_values)
@@ -198,9 +196,7 @@ This tap:
     | color_collections           | 15      | 1       |
     | permissions                 | 40      | 1       |
     | permission_sets             | 9       | 1       |
-    | spaces                      | 35      | 1       |
     | content_metadata_access     | 106     | 3       |
-    | homepages                   | 2       | 1       |
     | model_sets                  | 9       | 1       |
     | versions                    | 1       | 1       |
     | user_login_lockouts         | 0       | 1       |

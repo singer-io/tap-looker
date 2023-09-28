@@ -8,8 +8,8 @@ LOGGER = singer.get_logger()
 
 API_DOMAIN_DEFAULT = 'looker.com'
 API_PORT_DEFAULT = '19999'
-API_VERSIONS_SUPPORTED = ['2.99', '3.0', '3.1']
-API_VERSION_DEFAULT = '3.1'
+API_VERSIONS_SUPPORTED = ['4.0']
+API_VERSION_DEFAULT = '4.0'
 
 
 class Server5xxError(Exception):

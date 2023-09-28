@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 setup(name='tap-looker',
-      version='0.0.4',
+      version='0.1.0',
       description='Singer.io tap for extracting data/metadata from the Looker API',
       author='jeff.huth@bytecode.io',
       classifiers=['Programming Language :: Python :: 3 :: Only'],
@@ -11,7 +11,7 @@ setup(name='tap-looker',
       install_requires=[
           'backoff==1.8.0',
           'requests==2.23.0',
-          'singer-python==5.9.0'
+          'singer-python==5.13.0'
       ],
       extras_require={
           'dev': [
