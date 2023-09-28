@@ -1,8 +1,9 @@
 # Changelog
 
 ## 0.1.0
-  * API version upgrade and related changes
+  * API version upgrade to V4.0 and related changes [#13](https://github.com/singer-io/tap-looker/pull/13)
   * Upgrade singer-python version to 5.13.0
+  * Dependabot update [#12](https://github.com/singer-io/tap-looker/pull/12)
 
 ## 0.0.4
   * Error handling for `sync.py` child endpoint missing or not-accessible errors (404 and 5xx Errors).
