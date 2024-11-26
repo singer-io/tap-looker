@@ -10,7 +10,7 @@ setup(name='tap-looker',
       py_modules=['tap_looker'],
       install_requires=[
           'backoff==1.8.0',
-          'requests==2.31.0',
+          'requests==2.32.0',
           'singer-python==5.13.0'
       ],
       extras_require={
