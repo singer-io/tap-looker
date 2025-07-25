@@ -1,7 +1,7 @@
 # Changelog
 
 ## 0.2.0
-  * Library updates (singer-python, backoff and requests) [#16](https://github.com/singer-io/tap-looker/pull/16)
+  * Library updates (singer-python, backoff and requests) [#17](https://github.com/singer-io/tap-looker/pull/17)
 
 ## 0.1.0
   * API version upgrade to V4.0 and related changes [#13](https://github.com/singer-io/tap-looker/pull/13)
