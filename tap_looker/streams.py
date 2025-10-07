@@ -359,7 +359,8 @@ def flatten_streams():
             'key_properties': endpoint_config.get('key_properties'),
             'replication_method': endpoint_config.get('replication_method'),
             'replication_keys': endpoint_config.get('replication_keys'),
-            'swagger_object': endpoint_config.get('swagger_object')
+            'swagger_object': endpoint_config.get('swagger_object'),
+            'parent_stream': None
         }
         # Loop through children
         children = endpoint_config.get('children')
@@ -369,7 +370,8 @@ def flatten_streams():
                     'key_properties': child_endpoint_config.get('key_properties'),
                     'replication_method': child_endpoint_config.get('replication_method'),
                     'replication_keys': child_endpoint_config.get('replication_keys'),
-                    'swagger_object': child_endpoint_config.get('swagger_object')
+                    'swagger_object': child_endpoint_config.get('swagger_object'),
+                    'parent_stream': stream_name
                 }
                 # Loop through grand-children
                 grandchildren = child_endpoint_config.get('children')
@@ -381,6 +383,7 @@ def flatten_streams():
                             'replication_method': grandchild_endpoint_config.get\
                                 ('replication_method'),
                             'replication_keys': grandchild_endpoint_config.get('replication_keys'),
-                            'swagger_object': grandchild_endpoint_config.get('swagger_object')
+                            'swagger_object': grandchild_endpoint_config.get('swagger_object'),
+                            'parent_stream': child_stream_name
                         }
     return flat_streams
