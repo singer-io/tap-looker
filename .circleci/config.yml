@@ -16,7 +16,7 @@ jobs:
           name: 'pylint'
           command: |
             source /usr/local/share/virtualenvs/tap-looker/bin/activate
-            pylint tap_looker -d C,R,W
+            pylint tap_looker -d "$PYLINT_DISABLE_LIST,too-many-positional-arguments,consider-using-max-builtin,possibly-used-before-assignment,inconsistent-return-statements,unnecessary-lambda-assignment,unspecified-encoding,use-yield-from"
 workflows:
   version: 2
   commit:
