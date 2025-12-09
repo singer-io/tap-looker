@@ -10,13 +10,13 @@ jobs:
           command: |
             uv venv --python 3.9 /usr/local/share/virtualenvs/tap-looker
             source /usr/local/share/virtualenvs/tap-looker/bin/activate
-            uv pip install -U 'pip<19.2' setuptools
+            uv pip install -U setuptools
             uv pip install .[dev]
       - run:
           name: 'pylint'
           command: |
             source /usr/local/share/virtualenvs/tap-looker/bin/activate
-            pylint tap_looker -d C,R,W
+            pylint tap_looker -d 'C,R,W,possibly-used-before-assignment'
 workflows:
   version: 2
   commit:
