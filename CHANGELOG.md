@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2
+  * Exclude 403-forbidden streams from discovery [#21](https://github.com/singer-io/tap-looker/pull/19)
+  * Bump dependencies for compliance
+
 ## 0.1.1
   * Library updates for backoff, requests, and singer-python [#20](https://github.com/singer-io/tap-looker/pull/20)
 

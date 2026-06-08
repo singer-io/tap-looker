@@ -384,3 +384,20 @@ def flatten_streams():
                             'swagger_object': grandchild_endpoint_config.get('swagger_object')
                         }
     return flat_streams
+
+
+def build_child_parent_map():
+    """
+    Returns a dict mapping each child/grandchild stream name to the set of its
+    direct parent stream names.  Used by discover.py to cascade-remove inaccessible
+    streams and their descendants from the catalog.
+    """
+    child_to_parents = {}
+    for parent_name, endpoint_config in STREAMS.items():
+        children = endpoint_config.get('children', {})
+        for child_name, child_config in children.items():
+            child_to_parents.setdefault(child_name, set()).add(parent_name)
+            grandchildren = child_config.get('children', {})
+            for grandchild_name in grandchildren:
+                child_to_parents.setdefault(grandchild_name, set()).add(child_name)
+    return child_to_parents
