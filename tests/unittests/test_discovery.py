@@ -60,16 +60,27 @@ class TestBuildChildParentMap(unittest.TestCase):
         """explores is a grandchild of lookml_models via models."""
         self.assertIn('models', self.child_map.get('explores', set()))
 
+    def test_deep_nesting_three_levels(self):
+        """queries is mapped to merge_queries (3rd level: dashboards->dashboard_elements->merge_queries->queries)."""
+        self.assertIn('merge_queries', self.child_map.get('queries', set()))
+
     def test_parent_streams_not_in_map(self):
-        """Top-level parent streams (e.g. dashboards) must not appear as children."""
-        top_level = set(STREAMS.keys())
-        children_that_are_parents = {
-            child for child in self.child_map if child in top_level
-        }
-        # scheduled_plans is both a parent and child — that's acceptable, but
-        # no purely top-level streams (that have no parent) should be listed.
-        for name in children_that_are_parents:
-            self.assertIn(name, self.child_map)  # just confirm it's handled
+        """Streams that are never listed as a child anywhere in STREAMS must not appear in child_map."""
+        def _all_child_names(streams_dict):
+            found = set()
+            for config in streams_dict.values():
+                children = config.get('children', {})
+                if children:
+                    found.update(children.keys())
+                    found.update(_all_child_names(children))
+            return found
+
+        never_a_child = set(STREAMS.keys()) - _all_child_names(STREAMS)
+        for name in never_a_child:
+            self.assertNotIn(
+                name, self.child_map,
+                f"'{name}' is never a child stream but appears in the child-parent map",
+            )
 
     def test_users_children_mapped(self):
         for child in ('user_attribute_values', 'user_sessions',
@@ -206,19 +217,26 @@ class TestApplyAccessChecks(unittest.TestCase):
             self.fail('LookerForbiddenError raised unexpectedly')
 
     def test_probe_calls_correct_paths(self):
-        """client.request is invoked with each parent stream's path."""
+        """client.request is invoked with the correct path and endpoint for each parent stream."""
         client = _make_client()
         schemas, field_metadata = _make_schemas()
 
         _apply_access_checks(client, schemas, field_metadata)
 
-        called_endpoints = {
-            call.kwargs.get('endpoint') or (call.args[2] if len(call.args) > 2 else None)
-            for call in client.request.call_args_list
-        }
-        # Every parent stream should have been probed
-        for stream_name in PARENT_STREAM_PATHS:
-            self.assertIn(stream_name, called_endpoints)
+        # Build a map of endpoint -> path from the actual calls
+        called = {}
+        for c in client.request.call_args_list:
+            endpoint = c.kwargs.get('endpoint')
+            path = c.kwargs.get('path')
+            if endpoint is not None:
+                called[endpoint] = path
+
+        for stream_name, expected_path in PARENT_STREAM_PATHS.items():
+            self.assertIn(stream_name, called,
+                          f"Stream '{stream_name}' was never probed")
+            self.assertEqual(called[stream_name], expected_path,
+                             f"Stream '{stream_name}' probed with wrong path: "
+                             f"got '{called[stream_name]}', expected '{expected_path}'")
 
     def test_field_metadata_pruned_alongside_schema(self):
         client = _make_client(forbidden_streams=['users'])
