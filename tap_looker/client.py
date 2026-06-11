@@ -18,6 +18,9 @@ class Server5xxError(Exception):
 class Server429Error(Exception):
     pass
 
+class LookerForbiddenError(Exception):
+    pass
+
 class LookerClient:
 
     # pylint: disable=too-many-instance-attributes
@@ -148,6 +151,10 @@ class LookerClient:
         #response code equals 429 because rate limit has been exceeded
         elif status_code == 429:
             raise Server429Error()
+
+        elif status_code == 403:
+            raise LookerForbiddenError(
+                'HTTP-error-code: 403, Error: {}'.format(response.text))
 
         elif status_code == 404:
             if endpoint in ('explores', 'models', 'merge_queries', 'queries'):

@@ -387,3 +387,26 @@ def flatten_streams():
                             'parent_stream': child_stream_name
                         }
     return flat_streams
+
+
+def build_child_parent_map():
+    """
+    Returns a dict mapping each child stream name to the set of its direct
+    parent stream names, at any depth of nesting. Used by discover.py to
+    cascade-remove inaccessible streams and their descendants from the catalog.
+    """
+    child_to_parents = {}
+
+    def _walk(children, parent_name):
+        for child_name, child_config in children.items():
+            child_to_parents.setdefault(child_name, set()).add(parent_name)
+            nested = child_config.get('children', {})
+            if nested:
+                _walk(nested, child_name)
+
+    for parent_name, endpoint_config in STREAMS.items():
+        children = endpoint_config.get('children', {})
+        if children:
+            _walk(children, parent_name)
+
+    return child_to_parents
