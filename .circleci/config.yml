@@ -16,7 +16,7 @@ jobs:
           name: 'pylint'
           command: |
             source /usr/local/share/virtualenvs/tap-looker/bin/activate
-            pylint tap_looker -d 'C,R,W,possibly-used-before-assignment'
+            pylint tap_looker -d 'C,R,W'
 workflows:
   version: 2
   commit:

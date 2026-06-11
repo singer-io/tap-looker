@@ -3,7 +3,7 @@ from unittest.mock import MagicMock, patch
 
 from tap_looker.client import LookerForbiddenError
 from tap_looker.discover import (
-    PARENT_STREAM_PATHS,
+    _get_parent_stream_paths,
     _apply_access_checks,
     _prune_inaccessible_children,
     discover,
@@ -199,15 +199,18 @@ class TestApplyAccessChecks(unittest.TestCase):
 
     def test_all_parents_forbidden_raises(self):
         """LookerForbiddenError raised when every parent stream is forbidden."""
-        client = _make_client(forbidden_streams=list(PARENT_STREAM_PATHS.keys()))
-        schemas, field_metadata = _make_schemas()
+        parent_paths = _get_parent_stream_paths()
+        client = _make_client(forbidden_streams=list(parent_paths.keys()))
+        # Use only probeable (non-POST) parent streams so schemas empties out
+        schemas = {name: {} for name in parent_paths}
+        field_metadata = {name: [] for name in parent_paths}
 
         with self.assertRaises(LookerForbiddenError):
             _apply_access_checks(client, schemas, field_metadata)
 
     def test_partial_access_does_not_raise(self):
         """No exception when at least one parent is accessible."""
-        all_but_one = list(PARENT_STREAM_PATHS.keys())[:-1]
+        all_but_one = list(_get_parent_stream_paths().keys())[:-1]
         client = _make_client(forbidden_streams=all_but_one)
         schemas, field_metadata = _make_schemas()
 
@@ -231,7 +234,7 @@ class TestApplyAccessChecks(unittest.TestCase):
             if endpoint is not None:
                 called[endpoint] = path
 
-        for stream_name, expected_path in PARENT_STREAM_PATHS.items():
+        for stream_name, expected_path in _get_parent_stream_paths().items():
             self.assertIn(stream_name, called,
                           f"Stream '{stream_name}' was never probed")
             self.assertEqual(called[stream_name], expected_path,
@@ -286,13 +289,13 @@ class TestDiscover(unittest.TestCase):
 
     @patch('tap_looker.discover.get_schemas')
     def test_discover_raises_when_all_parents_forbidden(self, mock_get_schemas):
-        from tap_looker.streams import flatten_streams
-        flat = flatten_streams()
-        mock_schemas = {name: {'properties': {}} for name in flat}
-        mock_metadata = {name: [] for name in flat}
+        # Use only probeable (non-POST) parent streams so schemas empties out
+        parent_paths = _get_parent_stream_paths()
+        mock_schemas = {name: {'properties': {}} for name in parent_paths}
+        mock_metadata = {name: [] for name in parent_paths}
         mock_get_schemas.return_value = (mock_schemas, mock_metadata)
 
-        client = _make_client(forbidden_streams=list(PARENT_STREAM_PATHS.keys()))
+        client = _make_client(forbidden_streams=list(parent_paths.keys()))
         with self.assertRaises(LookerForbiddenError):
             discover(client)
 

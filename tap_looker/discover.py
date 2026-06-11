@@ -6,13 +6,14 @@ from tap_looker.streams import STREAMS, flatten_streams, build_child_parent_map
 
 LOGGER = singer.get_logger()
 
-# Parent stream probe paths: skip POST-method streams (e.g. query_history).
-# Strip query-string parameters — we only need to verify read access.
-PARENT_STREAM_PATHS = {
-    name: config.get('path', name).split('?')[0]
-    for name, config in STREAMS.items()
-    if config.get('method') != 'POST'
-}
+def _get_parent_stream_paths():
+    """Return {stream_name: probe_path} for all non-POST parent streams.
+    """
+    paths = {}
+    for name, config in STREAMS.items():
+        if config.get('method') != 'POST':
+            paths[name] = config.get('path', name).split('?')[0]
+    return paths
 
 
 def _apply_access_checks(client, schemas: dict, field_metadata: dict) -> None:
@@ -21,8 +22,9 @@ def _apply_access_checks(client, schemas: dict, field_metadata: dict) -> None:
     (and their descendants) from schemas and field_metadata in place.
     Raises LookerForbiddenError if no parent streams are accessible.
     """
+    parent_paths = _get_parent_stream_paths()
     inaccessible_streams = []
-    for stream_name, path in PARENT_STREAM_PATHS.items():
+    for stream_name, path in parent_paths.items():
         if stream_name not in schemas:
             continue
         try:
@@ -40,8 +42,7 @@ def _apply_access_checks(client, schemas: dict, field_metadata: dict) -> None:
 
     _prune_inaccessible_children(schemas, field_metadata)
 
-    accessible_parent_count = len(PARENT_STREAM_PATHS) - len(inaccessible_streams)
-    if inaccessible_streams and accessible_parent_count == 0:
+    if not schemas:
         raise LookerForbiddenError(
             "HTTP-error-code: 403, Error: The account credentials supplied do not have 'read' "
             "access to any of the streams supported by the tap. Data collection cannot be "
