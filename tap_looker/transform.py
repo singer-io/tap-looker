@@ -7,6 +7,7 @@ LOGGER = singer.get_logger()
 # TRANSFORM JSON SCHEMAS: Looker Swagger to Singer.io JSON Schema
 # Loop through and replace $ref references in nested dict and lists
 def replace_refs(this_dict, swagger):
+    new_v = None
     for k, v in list(this_dict.items()):
         if k == 'properties' and isinstance(this_dict, dict):
             this_dict['additionalProperties'] = False

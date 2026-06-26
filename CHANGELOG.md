@@ -1,7 +1,8 @@
 # Changelog
 
-## 0.1.1
-  * Library updates for backoff, requests, and singer-python [#20](https://github.com/singer-io/tap-looker/pull/20)
+## 0.2.0
+  * Exclude 403-forbidden streams from discovery [#21](https://github.com/singer-io/tap-looker/pull/21)
+  * Bump dependencies for compliance
 
 ## 0.1.0
   * API version upgrade to V4.0 and related changes [#13](https://github.com/singer-io/tap-looker/pull/13)

@@ -359,7 +359,8 @@ def flatten_streams():
             'key_properties': endpoint_config.get('key_properties'),
             'replication_method': endpoint_config.get('replication_method'),
             'replication_keys': endpoint_config.get('replication_keys'),
-            'swagger_object': endpoint_config.get('swagger_object')
+            'swagger_object': endpoint_config.get('swagger_object'),
+            'parent_stream': None
         }
         # Loop through children
         children = endpoint_config.get('children')
@@ -369,7 +370,8 @@ def flatten_streams():
                     'key_properties': child_endpoint_config.get('key_properties'),
                     'replication_method': child_endpoint_config.get('replication_method'),
                     'replication_keys': child_endpoint_config.get('replication_keys'),
-                    'swagger_object': child_endpoint_config.get('swagger_object')
+                    'swagger_object': child_endpoint_config.get('swagger_object'),
+                    'parent_stream': stream_name
                 }
                 # Loop through grand-children
                 grandchildren = child_endpoint_config.get('children')
@@ -381,6 +383,30 @@ def flatten_streams():
                             'replication_method': grandchild_endpoint_config.get\
                                 ('replication_method'),
                             'replication_keys': grandchild_endpoint_config.get('replication_keys'),
-                            'swagger_object': grandchild_endpoint_config.get('swagger_object')
+                            'swagger_object': grandchild_endpoint_config.get('swagger_object'),
+                            'parent_stream': child_stream_name
                         }
     return flat_streams
+
+
+def build_child_parent_map():
+    """
+    Returns a dict mapping each child stream name to the set of its direct
+    parent stream names, at any depth of nesting. Used by discover.py to
+    cascade-remove inaccessible streams and their descendants from the catalog.
+    """
+    child_to_parents = {}
+
+    def _walk(children, parent_name):
+        for child_name, child_config in children.items():
+            child_to_parents.setdefault(child_name, set()).add(parent_name)
+            nested = child_config.get('children', {})
+            if nested:
+                _walk(nested, child_name)
+
+    for parent_name, endpoint_config in STREAMS.items():
+        children = endpoint_config.get('children', {})
+        if children:
+            _walk(children, parent_name)
+
+    return child_to_parents
